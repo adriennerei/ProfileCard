@@ -1,40 +1,86 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import React from 'react';
+import { StyleSheet, Text, View, Image, SafeAreaView, Dimensions, ScrollView } from 'react-native';
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
 
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+// Mock data to populate the profile card
+const profileData = {
+  website: 'www.adriennerei.com',
+  // Reverted to a placeholder URL so that the app will run without errors.
+  image: 'https://placehold.co/200x200/B0D9F6/000?text=Image',
+  fullName: 'Adrienne Rei H. Cabristante',
+  username: 'adriennerei',
+  bio: 'choi seungcheol',
+  course: 'Bachelor of Science in Information Technology',
+};
 
+
+const App = () => {
   return (
-    <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
-    </SafeAreaProvider>
-  );
-}
+    <SafeAreaView style={styles.safeArea}>
+      <ScrollView contentContainerStyle={styles.container}>
+        <View style={styles.card}>
+          {/* Top bar with website and window controls */}
+          <View style={styles.topBar}>
+            <Text style={styles.icon}>🌎</Text>
+            <View style={styles.websiteBox}>
+              <Text numberOfLines={1} style={styles.websiteText}>
+                {profileData.website}
+              </Text>
+            </View>
+            <View style={styles.windowControls}>
+              <View style={styles.controlButton}>
+                <Text style={styles.controlText}>-</Text>
+              </View>
+              <View style={styles.controlButton}>
+                <Text style={styles.controlText}>+</Text>
+              </View>
+              <View style={styles.controlButton}>
+                <Text style={styles.controlText}>x</Text>
+              </View>
+            </View>
+          </View>
 
-function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
 
-  return (
-    <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
-    </View>
+          {/* Main content area */}
+          <View style={styles.mainContent}>
+            {/* Image */}
+            <View style={styles.imageContainer}>
+              <Image
+                source={{ uri: profileData.image }}
+                style={styles.profileImage}
+                resizeMode="cover"
+              />
+            </View>
+
+
+            {/* "About me" section below the image */}
+            <View style={styles.aboutMeHeader}>
+              <Text style={styles.aboutMeText}>about me</Text>
+            </View>
+            <View style={styles.aboutMeBox}>
+              <Text style={styles.aboutMeInfo}>
+                <Text style={styles.boldText}>Name:</Text> {profileData.fullName}
+              </Text>
+              <Text style={styles.aboutMeInfo}>
+                <Text style={styles.boldText}>Username:</Text> {profileData.username}
+              </Text>
+              <Text style={styles.aboutMeInfo}>
+                <Text style={styles.boldText}>Course:</Text> {profileData.course}
+              </Text>
+              <Text style={styles.aboutMeBio}>{profileData.bio}</Text>
+            </View>
+          </View>
+         
+          {/* Footer */}
+          <View style={styles.footer}>
+            <Text style={styles.footerText}>© adriennerei</Text>
+          </View>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
-}
+};
+
 
 const styles = StyleSheet.create({
   safeArea: {
