@@ -1,17 +1,18 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, SafeAreaView, Dimensions, ScrollView } from 'react-native';
 
+
 // Mock data to populate the profile card
 const profileData = {
   website: 'www.adriennerei.com',
-  // You would typically use a local asset, but for this example, we'll use a placeholder URL.
-  // Make sure to add a valid image URL here.
+  // Reverted to a placeholder URL so that the app will run without errors.
   image: 'https://placehold.co/200x200/B0D9F6/000?text=Image',
   fullName: 'Adrienne Rei H. Cabristante',
   username: 'adriennerei',
-  bio: 'seungcheol luvr',
+  bio: 'choi seungcheol',
   course: 'Bachelor of Science in Information Technology',
 };
+
 
 const App = () => {
   return (
@@ -39,6 +40,7 @@ const App = () => {
             </View>
           </View>
 
+
           {/* Main content area */}
           <View style={styles.mainContent}>
             {/* Image */}
@@ -49,6 +51,7 @@ const App = () => {
                 resizeMode="cover"
               />
             </View>
+
 
             {/* "About me" section below the image */}
             <View style={styles.aboutMeHeader}>
@@ -67,7 +70,7 @@ const App = () => {
               <Text style={styles.aboutMeBio}>{profileData.bio}</Text>
             </View>
           </View>
-          
+         
           {/* Footer */}
           <View style={styles.footer}>
             <Text style={styles.footerText}>© adriennerei</Text>
@@ -77,6 +80,7 @@ const App = () => {
     </SafeAreaView>
   );
 };
+
 
 const styles = StyleSheet.create({
   safeArea: {
@@ -214,5 +218,6 @@ const styles = StyleSheet.create({
     fontSize: 10,
   },
 });
+
 
 export default App;
