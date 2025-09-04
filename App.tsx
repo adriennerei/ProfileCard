@@ -1,54 +1,79 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, SafeAreaView } from 'react-native';
+import { Text, View, Image, SafeAreaView, ScrollView, StyleSheet, Dimensions } from 'react-native';
+
+const localProfileImage = require('./pics/adriennerei.png');
+
+const profileData = {
+  website: 'www.adriennerei.com',
+  // Use the imported image variable
+  image: localProfileImage,
+  fullName: 'Adrienne Rei H. Cabristante',
+  username: 'adriennerei',
+  bio: 'two steps backward for a big step forward',
+  course: 'Bachelor of Science in Information Technology',
+};
 
 const App = () => {
   return (
     <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        {/* Header */}
-        <View style={styles.header}>
-          <View style={styles.headerContent}>
-            <Text style={styles.headerText}>www.adriennerei.com</Text>
+      <ScrollView contentContainerStyle={styles.container}>
+        <View style={styles.card}>
+          {/* Top bar with website and window controls */}
+          <View style={styles.topBar}>
+            <Text style={styles.icon}>🌎</Text>
+            <View style={styles.websiteBox}>
+              <Text numberOfLines={1} style={styles.websiteText}>
+                {profileData.website}
+              </Text>
+            </View>
+            <View style={styles.windowControls}>
+              <View style={styles.controlButton}>
+                <Text style={styles.controlText}>-</Text>
+              </View>
+              <View style={styles.controlButton}>
+                <Text style={styles.controlText}>+</Text>
+              </View>
+              <View style={styles.controlButton}>
+                <Text style={styles.controlText}>x</Text>
+              </View>
+            </View>
           </View>
-          <View style={styles.headerButtons}>
-            <View style={[styles.circle, styles.redCircle]}></View>
-            <View style={[styles.circle, styles.yellowCircle]}></View>
-            <View style={[styles.circle, styles.greenCircle]}></View>
+
+          {/* main content */}
+          <View style={styles.mainContent}>
+            {/* Image */}
+            <View style={styles.imageContainer}>
+              <Image
+                source={profileData.image}
+                style={styles.profileImage}
+                resizeMode="cover"
+              />
+            </View>
+
+            {/* about me */}
+            <View style={styles.aboutMeHeader}>
+              <Text style={styles.aboutMeText}>about me</Text>
+            </View>
+            <View style={styles.aboutMeBox}>
+              <Text style={styles.aboutMeInfo}>
+                <Text style={styles.boldText}>Name:</Text> {profileData.fullName}
+              </Text>
+              <Text style={styles.aboutMeInfo}>
+                <Text style={styles.boldText}>Username:</Text> {profileData.username}
+              </Text>
+              <Text style={styles.aboutMeInfo}>
+                <Text style={styles.boldText}>Course:</Text> {profileData.course}
+              </Text>
+              <Text style={styles.aboutMeBio}>{profileData.bio}</Text>
+            </View>
+          </View>
+          
+          {/* footer */}
+          <View style={styles.footer}>
+            <Text style={styles.footerText}>© adriennerei</Text>
           </View>
         </View>
-
-        {/* Main Content */}
-        <View style={styles.mainContent}>
-          {/* Profile Picture Container */}
-          <View style={styles.imageContainer}>
-            <Image
-              source={{ uri: 'https://placehold.co/150x150/0000FF/FFFFFF?text=Adrienne' }}
-              style={styles.profileImage}
-            />
-          </View>
-
-          {/* About Me Button */}
-          <View style={styles.aboutMeButton}>
-            <Text style={styles.aboutMeText}>about me</Text>
-          </View>
-
-          {/* About Me Section */}
-          <View style={styles.aboutMeSection}>
-            <Text style={styles.aboutMeInfoText}>
-              Name: Adrienne Rei H. Cabristante{'\n'}
-              Username: adriennerei{'\n'}
-              Course: Bachelor of Science in Information Technology{'\n'}
-              {'\n'}
-              alo alo t-h-u-n-d-e-r alo alo
-            </Text>
-          </View>
-        </View>
-
-        {/* Footer */}
-        <View style={styles.footer}>
-          <Text style={styles.footerText}>© adriennerei</Text>
-        </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -56,118 +81,137 @@ const App = () => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#B2EBF2',
+    backgroundColor: '#E0F2FE',
   },
   container: {
-    flex: 1,
-    margin: 16,
-    borderRadius: 16,
-    overflow: 'hidden',
-    borderWidth: 2,
-    borderColor: 'black',
-    backgroundColor: '#BBDEFB',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
+    flexGrow: 1,
+    justifyContent: 'center',
+    padding: 20,
+    backgroundColor: '#E0F2FE',
   },
-  header: {
-    padding: 8,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    borderBottomWidth: 2,
-    borderBottomColor: 'black',
-    backgroundColor: '#BBDEFB',
-  },
-  headerContent: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  headerText: {
-    color: 'black',
-    fontSize: 10,
-    fontWeight: 'bold',
-  },
-  headerButtons: {
-    flexDirection: 'row',
-    gap: 4,
-  },
-  circle: {
-    width: 16,
-    height: 16,
-    borderRadius: 8,
-    borderWidth: 2,
-    borderColor: 'black',
-  },
-  redCircle: {
-    backgroundColor: '#EF4444',
-  },
-  yellowCircle: {
-    backgroundColor: '#FACC15',
-  },
-  greenCircle: {
-    backgroundColor: '#22C55E',
-  },
-  mainContent: {
-    padding: 16,
-    alignItems: 'center',
-    backgroundColor: '#B2EBF2',
-  },
-  imageContainer: {
-    padding: 16,
-    borderWidth: 2,
-    borderColor: 'black',
-    borderRadius: 16,
-    backgroundColor: 'white',
-    marginBottom: 16,
-  },
-  profileImage: {
-    width: 128,
-    height: 128,
-    borderRadius: 64,
+  card: {
+    backgroundColor: '#B0D9F6',
     borderWidth: 4,
     borderColor: 'black',
-  },
-  aboutMeButton: {
-    width: '100%',
     borderRadius: 16,
-    padding: 8,
+    padding: 20,
+    shadowColor: 'black',
+    shadowOffset: { width: 8, height: 8 },
+    shadowOpacity: 1,
+    shadowRadius: 0,
+    elevation: 10,
+  },
+  topBar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#87CEEB',
     borderWidth: 2,
     borderColor: 'black',
-    alignItems: 'center',
+    borderRadius: 8,
+    padding: 8,
     marginBottom: 16,
-    backgroundColor: '#BBDEFB',
+  },
+  icon: {
+    fontSize: 16,
+    marginRight: 8,
+  },
+  websiteBox: {
+    flex: 1,
+    backgroundColor: 'white',
+    borderWidth: 2,
+    borderColor: 'black',
+    borderRadius: 8,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+  },
+  websiteText: {
+    fontFamily: 'monospace',
+    fontSize: 12,
+  },
+  windowControls: {
+    flexDirection: 'row',
+    marginLeft: 8,
+    gap: 8,
+  },
+  controlButton: {
+    backgroundColor: 'white',
+    borderWidth: 2,
+    borderColor: 'black',
+    borderRadius: 20,
+    width: 20,
+    height: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  controlText: {
+    fontSize: 12,
+  },
+  mainContent: {
+    flexDirection: 'column',
+    gap: 16,
+  },
+  imageContainer: {
+    borderWidth: 4,
+    borderColor: 'black',
+    borderRadius: 16,
+    overflow: 'hidden',
+    shadowColor: 'black',
+    shadowOffset: { width: 4, height: 4 },
+    shadowOpacity: 1,
+    shadowRadius: 0,
+    elevation: 5,
+    alignSelf: 'center',
+    width: '100%',
+    maxWidth: 200, // Constrain the image width for better appearance
+  },
+  profileImage: {
+    width: '100%',
+    aspectRatio: 1,
+  },
+  aboutMeHeader: {
+    backgroundColor: '#87CEEB',
+    borderWidth: 2,
+    borderColor: 'black',
+    borderRadius: 8,
+    padding: 8,
+    alignItems: 'center',
   },
   aboutMeText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: 'black',
+    fontFamily: 'monospace',
+    fontSize: 16,
   },
-  aboutMeSection: {
-    width: '100%',
+  aboutMeBox: {
     backgroundColor: 'white',
-    borderRadius: 16,
-    padding: 16,
     borderWidth: 2,
     borderColor: 'black',
+    borderRadius: 8,
+    padding: 12,
+    shadowColor: 'black',
+    shadowOffset: { width: 4, height: 4 },
+    shadowOpacity: 1,
+    shadowRadius: 0,
+    elevation: 5,
   },
-  aboutMeInfoText: {
-    color: 'black',
-    fontSize: 14,
-    textAlign: 'left',
+  aboutMeInfo: {
+    fontFamily: 'monospace',
+    fontSize: 12,
+    marginBottom: 4,
+  },
+  boldText: {
+    fontWeight: 'bold',
+  },
+  aboutMeBio: {
+    marginTop: 8,
+    fontFamily: 'monospace',
+    fontSize: 12,
   },
   footer: {
-    padding: 8,
     alignItems: 'center',
-    borderTopWidth: 2,
-    borderTopColor: 'black',
-    backgroundColor: '#BBDEFB',
+    marginTop: 16,
   },
   footerText: {
-    color: 'black',
+    fontFamily: 'monospace',
+    fontSize: 10,
   },
 });
 
