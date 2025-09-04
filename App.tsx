@@ -1,8 +1,6 @@
 import React from 'react';
 import { Text, View, Image, SafeAreaView, ScrollView, StyleSheet, Dimensions } from 'react-native';
 
-// The path in this require() function is the most likely cause of the visual issue.
-// Make sure this relative path is EXACTLY correct for your project's folder structure.
 const localProfileImage = require('./pics/adriennerei.png');
 
 const profileData = {
@@ -19,7 +17,7 @@ const App = () => {
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.card}>
-          {/* Top bar with website and window controls */}
+          {/* top bar */}
           <View style={styles.topBar}>
             <Text style={styles.icon}>🍒</Text>
             <View style={styles.websiteBox}>
@@ -42,7 +40,7 @@ const App = () => {
 
           {/* main content */}
           <View style={styles.mainContent}>
-            {/* Image */}
+            {/* image */}
             <View style={styles.imageContainer}>
               <Image
                 source={profileData.image}
