@@ -1,21 +1,18 @@
 import React from 'react';
 import { Text, View, Image, SafeAreaView, ScrollView, StyleSheet, Dimensions } from 'react-native';
 
-
 // The path in this require() function is the most likely cause of the visual issue.
 // Make sure this relative path is EXACTLY correct for your project's folder structure.
 const localProfileImage = require('./pics/adriennerei.png');
-
 
 const profileData = {
   website: 'www.adriennerei.com',
   image: localProfileImage,
   fullName: 'Adrienne Rei H. Cabristante',
-  username: 'adriennerei',
-  bio: 'alo',
-  course: 'Bachelor of Science in Information Technology',
+  username: '@aienneeee',
+  bio: 'be gentle with yourself, its your first time living too',
+  course: 'BSIT - Software Development',
 };
-
 
 const App = () => {
   return (
@@ -43,7 +40,6 @@ const App = () => {
             </View>
           </View>
 
-
           {/* main content */}
           <View style={styles.mainContent}>
             {/* Image */}
@@ -54,7 +50,6 @@ const App = () => {
                 resizeMode="cover"
               />
             </View>
-
 
             {/* about me */}
             <View style={styles.aboutMeHeader}>
@@ -73,7 +68,7 @@ const App = () => {
               <Text style={styles.aboutMeBio}>{profileData.bio}</Text>
             </View>
           </View>
-         
+          
           {/* footer */}
           <View style={styles.footer}>
             <Text style={styles.footerText}>© adriennerei</Text>
@@ -83,7 +78,6 @@ const App = () => {
     </SafeAreaView>
   );
 };
-
 
 const styles = StyleSheet.create({
   safeArea: {
@@ -211,7 +205,10 @@ const styles = StyleSheet.create({
   aboutMeBio: {
     marginTop: 8,
     fontFamily: 'monospace',
-    fontSize: 12,
+    fontSize: 14,
+    fontWeight: 'bold',
+    fontStyle: 'italic',
+    color: '#4B5563',
     textAlign: 'center',
   },
   footer: {
@@ -223,6 +220,5 @@ const styles = StyleSheet.create({
     fontSize: 10,
   },
 });
-
 
 export default App;
