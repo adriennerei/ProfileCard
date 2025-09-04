@@ -20,7 +20,7 @@ const App = () => {
         <View style={styles.card}>
           {/* Top bar with website and window controls */}
           <View style={styles.topBar}>
-            <Text style={styles.icon}>🌎</Text>
+            <Text style={styles.icon}>🍒</Text>
             <View style={styles.websiteBox}>
               <Text numberOfLines={1} style={styles.websiteText}>
                 {profileData.website}
