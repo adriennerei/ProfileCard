@@ -1,57 +1,89 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, SafeAreaView } from 'react-native';
+import { Text, View, Image, SafeAreaView, ScrollView, StyleSheet, Dimensions } from 'react-native';
+
+
+// The path in this require() function is the most likely cause of the visual issue.
+// Make sure this relative path is EXACTLY correct for your project's folder structure.
+const localProfileImage = require('./pics/adriennerei.png');
+
+
+const profileData = {
+  website: 'www.adriennerei.com',
+  image: localProfileImage,
+  fullName: 'Adrienne Rei H. Cabristante',
+  username: 'adriennerei',
+  bio: 'alo',
+  course: 'Bachelor of Science in Information Technology',
+};
+
 
 const App = () => {
   return (
     <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        {/* Header */}
-        <View style={styles.header}>
-          <View style={styles.headerContent}>
-            <Text style={styles.headerText}>www.adriennerei.com</Text>
+      <ScrollView contentContainerStyle={styles.container}>
+        <View style={styles.card}>
+          {/* Top bar with website and window controls */}
+          <View style={styles.topBar}>
+            <Text style={styles.icon}>🍒</Text>
+            <View style={styles.websiteBox}>
+              <Text numberOfLines={1} style={styles.websiteText}>
+                {profileData.website}
+              </Text>
+            </View>
+            <View style={styles.windowControls}>
+              <View style={styles.controlButton}>
+                <Text style={styles.controlText}>-</Text>
+              </View>
+              <View style={styles.controlButton}>
+                <Text style={styles.controlText}>+</Text>
+              </View>
+              <View style={styles.controlButton}>
+                <Text style={styles.controlText}>x</Text>
+              </View>
+            </View>
           </View>
-          <View style={styles.headerButtons}>
-            <View style={[styles.circle, styles.redCircle]}></View>
-            <View style={[styles.circle, styles.yellowCircle]}></View>
-            <View style={[styles.circle, styles.greenCircle]}></View>
+
+
+          {/* main content */}
+          <View style={styles.mainContent}>
+            {/* Image */}
+            <View style={styles.imageContainer}>
+              <Image
+                source={profileData.image}
+                style={styles.profileImage}
+                resizeMode="cover"
+              />
+            </View>
+
+
+            {/* about me */}
+            <View style={styles.aboutMeHeader}>
+              <Text style={styles.aboutMeText}>about me</Text>
+            </View>
+            <View style={styles.aboutMeBox}>
+              <Text style={styles.aboutMeInfo}>
+                 {profileData.fullName}
+              </Text>
+              <Text style={styles.aboutMeInfo}>
+                 {profileData.username}
+              </Text>
+              <Text style={styles.aboutMeInfo}>
+                 {profileData.course}
+              </Text>
+              <Text style={styles.aboutMeBio}>{profileData.bio}</Text>
+            </View>
+          </View>
+         
+          {/* footer */}
+          <View style={styles.footer}>
+            <Text style={styles.footerText}>© adriennerei</Text>
           </View>
         </View>
-
-        {/* Main Content */}
-        <View style={styles.mainContent}>
-          {/* Profile Picture Container */}
-          <View style={styles.imageContainer}>
-            <Image
-              source={{ uri: 'https://placehold.co/150x150/0000FF/FFFFFF?text=Adrienne' }}
-              style={styles.profileImage}
-            />
-          </View>
-
-          {/* About Me Button */}
-          <View style={styles.aboutMeButton}>
-            <Text style={styles.aboutMeText}>about me</Text>
-          </View>
-
-          {/* About Me Section */}
-          <View style={styles.aboutMeSection}>
-            <Text style={styles.aboutMeInfoText}>
-              Name: Adrienne Rei H. Cabristante{'\n'}
-              Username: adriennerei{'\n'}
-              Course: Bachelor of Science in Information Technology{'\n'}
-              {'\n'}
-              alo alo t-h-u-n-d-e-r alo alo
-            </Text>
-          </View>
-        </View>
-
-        {/* Footer */}
-        <View style={styles.footer}>
-          <Text style={styles.footerText}>© adriennerei</Text>
-        </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
+
 
 const styles = StyleSheet.create({
   safeArea: {
@@ -129,13 +161,22 @@ const styles = StyleSheet.create({
     borderWidth: 4,
     borderColor: 'black',
     borderRadius: 16,
-    backgroundColor: 'white',
-    marginBottom: 16,
+    overflow: 'hidden',
+    shadowColor: 'black',
+    shadowOffset: { width: 4, height: 4 },
+    shadowOpacity: 1,
+    shadowRadius: 0,
+    elevation: 5,
+    alignSelf: 'center',
+    width: 200,
+    height: 200,
   },
   profileImage: {
     width: '100%',
-    borderRadius: 16,
-    padding: 8,
+    height: '100%',
+  },
+  aboutMeHeader: {
+    backgroundColor: '#87CEEB',
     borderWidth: 2,
     borderColor: 'black',
     borderRadius: 8,
@@ -150,11 +191,28 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderWidth: 2,
     borderColor: 'black',
+    borderRadius: 8,
+    padding: 12,
+    shadowColor: 'black',
+    shadowOffset: { width: 4, height: 4 },
+    shadowOpacity: 1,
+    shadowRadius: 0,
+    elevation: 5,
   },
-  aboutMeInfoText: {
-    color: 'black',
-    fontSize: 14,
-    textAlign: 'left',
+  aboutMeInfo: {
+    fontFamily: 'monospace',
+    fontSize: 12,
+    marginBottom: 4,
+    textAlign: 'center',
+  },
+  boldText: {
+    fontWeight: 'bold',
+  },
+  aboutMeBio: {
+    marginTop: 8,
+    fontFamily: 'monospace',
+    fontSize: 12,
+    textAlign: 'center',
   },
   footer: {
     alignItems: 'center',
@@ -165,5 +223,6 @@ const styles = StyleSheet.create({
     fontSize: 10,
   },
 });
+
 
 export default App;
