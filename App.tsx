@@ -1,78 +1,54 @@
 import React from 'react';
-import { Text, View, Image, SafeAreaView, ScrollView, StyleSheet, Dimensions } from 'react-native';
-
-const localProfileImage = require('./pics/adriennerei.png');
-
-const profileData = {
-  website: 'www.adriennerei.com',
-  image: localProfileImage,
-  fullName: 'Adrienne Rei H. Cabristante',
-  username: '@aienneee',
-  bio: 'alo alo',
-  course: 'BSIT - Software Development',
-};
+import { StyleSheet, Text, View, Image, SafeAreaView } from 'react-native';
 
 const App = () => {
   return (
     <SafeAreaView style={styles.safeArea}>
-      <ScrollView contentContainerStyle={styles.container}>
-        <View style={styles.card}>
-          {/* top bar */}
-          <View style={styles.topBar}>
-            <Text style={styles.icon}>🍒</Text>
-            <View style={styles.websiteBox}>
-              <Text numberOfLines={1} style={styles.websiteText}>
-                {profileData.website}
-              </Text>
-            </View>
-            <View style={styles.windowControls}>
-              <View style={styles.controlButton}>
-                <Text style={styles.controlText}>-</Text>
-              </View>
-              <View style={styles.controlButton}>
-                <Text style={styles.controlText}>+</Text>
-              </View>
-              <View style={styles.controlButton}>
-                <Text style={styles.controlText}>x</Text>
-              </View>
-            </View>
+      <View style={styles.container}>
+        {/* Header */}
+        <View style={styles.header}>
+          <View style={styles.headerContent}>
+            <Text style={styles.headerText}>www.adriennerei.com</Text>
           </View>
-
-          {/* main content */}
-          <View style={styles.mainContent}>
-            {/* image */}
-            <View style={styles.imageContainer}>
-              <Image
-                source={profileData.image}
-                style={styles.profileImage}
-                resizeMode="cover"
-              />
-            </View>
-
-            {/* about me */}
-            <View style={styles.aboutMeHeader}>
-              <Text style={styles.aboutMeText}>about me</Text>
-            </View>
-            <View style={styles.aboutMeBox}>
-              <Text style={styles.aboutMeInfo}>
-                 {profileData.fullName}
-              </Text>
-              <Text style={styles.aboutMeInfo}>
-                 {profileData.username}
-              </Text>
-              <Text style={styles.aboutMeInfo}>
-                 {profileData.course}
-              </Text>
-              <Text style={styles.aboutMeBio}>{profileData.bio}</Text>
-            </View>
-          </View>
-          
-          {/* footer */}
-          <View style={styles.footer}>
-            <Text style={styles.footerText}>© adriennerei</Text>
+          <View style={styles.headerButtons}>
+            <View style={[styles.circle, styles.redCircle]}></View>
+            <View style={[styles.circle, styles.yellowCircle]}></View>
+            <View style={[styles.circle, styles.greenCircle]}></View>
           </View>
         </View>
-      </ScrollView>
+
+        {/* Main Content */}
+        <View style={styles.mainContent}>
+          {/* Profile Picture Container */}
+          <View style={styles.imageContainer}>
+            <Image
+              source={{ uri: 'https://placehold.co/150x150/0000FF/FFFFFF?text=Adrienne' }}
+              style={styles.profileImage}
+            />
+          </View>
+
+          {/* About Me Button */}
+          <View style={styles.aboutMeButton}>
+            <Text style={styles.aboutMeText}>about me</Text>
+          </View>
+
+          {/* About Me Section */}
+          <View style={styles.aboutMeSection}>
+            <Text style={styles.aboutMeInfoText}>
+              Name: Adrienne Rei H. Cabristante{'\n'}
+              Username: adriennerei{'\n'}
+              Course: Bachelor of Science in Information Technology{'\n'}
+              {'\n'}
+              alo alo t-h-u-n-d-e-r alo alo
+            </Text>
+          </View>
+        </View>
+
+        {/* Footer */}
+        <View style={styles.footer}>
+          <Text style={styles.footerText}>© adriennerei</Text>
+        </View>
+      </View>
     </SafeAreaView>
   );
 };
@@ -153,22 +129,13 @@ const styles = StyleSheet.create({
     borderWidth: 4,
     borderColor: 'black',
     borderRadius: 16,
-    overflow: 'hidden',
-    shadowColor: 'black',
-    shadowOffset: { width: 4, height: 4 },
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    elevation: 5,
-    alignSelf: 'center',
-    width: 200,
-    height: 200,
+    backgroundColor: 'white',
+    marginBottom: 16,
   },
   profileImage: {
     width: '100%',
-    height: '100%',
-  },
-  aboutMeHeader: {
-    backgroundColor: '#87CEEB',
+    borderRadius: 16,
+    padding: 8,
     borderWidth: 2,
     borderColor: 'black',
     borderRadius: 8,
@@ -183,28 +150,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderWidth: 2,
     borderColor: 'black',
-    borderRadius: 8,
-    padding: 12,
-    shadowColor: 'black',
-    shadowOffset: { width: 4, height: 4 },
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    elevation: 5,
   },
-  aboutMeInfo: {
-    fontFamily: 'monospace',
-    fontSize: 12,
-    marginBottom: 4,
-    textAlign: 'center',
-  },
-  boldText: {
-    fontWeight: 'bold',
-  },
-  aboutMeBio: {
-    marginTop: 8,
-    fontFamily: 'monospace',
-    fontSize: 12,
-    textAlign: 'center',
+  aboutMeInfoText: {
+    color: 'black',
+    fontSize: 14,
+    textAlign: 'left',
   },
   footer: {
     alignItems: 'center',
